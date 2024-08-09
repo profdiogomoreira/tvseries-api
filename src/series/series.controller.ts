@@ -24,11 +24,10 @@ export class SeriesController {
     };
   }
 
-  @Get('search')
-  findByTitle(@Query('title') title: string) {
-    const series = this.seriesService.findByTitle(title);
+  @Get('buscar')
+  findByTitle(@Query('titulo') titulo: string) {
+    const series = this.seriesService.findByTitle(titulo);
     return {
-      message: `TV series matching the title: ${title}`,
       data: series,
     };
   }
