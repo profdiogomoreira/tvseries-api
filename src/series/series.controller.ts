@@ -23,4 +23,13 @@ export class SeriesController {
       data: series,
     };
   }
+
+  @Get('search')
+  findByTitle(@Query('title') title: string) {
+    const series = this.seriesService.findByTitle(title);
+    return {
+      message: `TV series matching the title: ${title}`,
+      data: series,
+    };
+  }
 }

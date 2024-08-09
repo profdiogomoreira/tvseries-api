@@ -1,6 +1,6 @@
 export interface TVSeries {
   id: number;
-  name: string;
+  titulo: string;
   generos: string[];
   imagem: string;
   resumo: string;

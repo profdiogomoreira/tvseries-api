@@ -30,4 +30,10 @@ export class SeriesService {
     }
     return series;
   }
+
+  findByTitle(titulo: string): any[] {
+    return this.data.filter((series) =>
+      series.titulo.toLowerCase().includes(titulo.toLowerCase()),
+    );
+  }
 }
