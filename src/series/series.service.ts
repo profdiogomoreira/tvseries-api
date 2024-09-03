@@ -17,23 +17,22 @@ export class SeriesService {
     this.data = JSON.parse(readFileSync(dataFilePath, 'utf8')) as TVSeries[];
   }
 
-  findAll(page: number, limit: number): any[] {
-    const start = (page - 1) * limit;
-    const end = start + limit;
-    return this.data.slice(start, end);
-  }
-
   findOne(id: string): any {
-    const series = this.data.find((item) => item.id === Number(id));
-    if (!series) {
+    const serie = this.data.find((item) => item.id === Number(id));
+    if (!serie) {
       throw new NotFoundException(`Série com ID ${id} não encontrada`);
     }
-    return series;
+    return serie;
   }
 
-  findByTitle(titulo: string): any[] {
-    return this.data.filter((series) =>
-      series.titulo.toLowerCase().includes(titulo.toLowerCase()),
-    );
+  findByTitle(title: string, page: number, limit: number) {
+    const filtered = title
+      ? this.data.filter((series) =>
+          series.titulo.toLowerCase().includes(title.toLowerCase()),
+        )
+      : this.data;
+    const start = (page - 1) * limit;
+    const end = start + limit;
+    return { total: filtered.length, series: filtered.slice(start, end) };
   }
 }

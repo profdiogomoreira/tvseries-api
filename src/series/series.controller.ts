@@ -6,29 +6,28 @@ export class SeriesController {
   constructor(private readonly seriesService: SeriesService) {}
 
   @Get()
-  findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 10) {
-    const series = this.seriesService.findAll(page, limit);
+  findByTitle(
+    @Query('titulo') title: string,
+    @Query('pagina') pagina = 1,
+    @Query('limite') limite = 10,
+  ) {
+    const { total, series } = this.seriesService.findByTitle(
+      title,
+      pagina,
+      limite,
+    );
     return {
-      page,
-      limit,
+      total,
       data: series,
     };
   }
 
-  @Get(':id')
+  @Get('/:id')
   findOne(@Param('id') id: string) {
-    const series = this.seriesService.findOne(id);
+    const serie = this.seriesService.findOne(id);
     return {
       id,
-      data: series,
-    };
-  }
-
-  @Get('buscar')
-  findByTitle(@Query('titulo') titulo: string) {
-    const series = this.seriesService.findByTitle(titulo);
-    return {
-      data: series,
+      data: serie,
     };
   }
 }
