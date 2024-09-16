@@ -8,8 +8,8 @@ export class SeriesController {
   @Get()
   findByTitle(
     @Query('titulo') title: string,
-    @Query('pagina') pagina = 1,
-    @Query('limite') limite = 10,
+    @Query('pagina') pagina: number = 1,
+    @Query('limite') limite: number = 10,
   ) {
     const { total, series } = this.seriesService.findByTitle(
       title,

@@ -25,14 +25,14 @@ export class SeriesService {
     return serie;
   }
 
-  findByTitle(title: string, page: number, limit: number) {
+  findByTitle(title: string, pagina: number, limite: number) {
     const filtered = title
       ? this.data.filter((series) =>
           series.titulo.toLowerCase().includes(title.toLowerCase()),
         )
       : this.data;
-    const start = (page - 1) * limit;
-    const end = start + limit;
+    const start = (pagina - 1) * limite;
+    const end = start + limite;
     return { total: filtered.length, series: filtered.slice(start, end) };
   }
 }
