@@ -14,7 +14,11 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 app.get('/home', function(req, res){
-    res.render('menu')
+    res.render('series')
+})
+
+app.get('/series', function(req, res){
+    res.send(`${req.body.titulo}`)
 })
 
 app.listen('3000', function(){
